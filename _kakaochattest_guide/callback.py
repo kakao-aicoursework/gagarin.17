@@ -5,6 +5,7 @@ import time
 import logging
 import openai
 from conf import private_key
+from vectorDB import vectordb
 # test
 # 환경 변수 처리 필요!
 openai.api_key = private_key
@@ -14,8 +15,9 @@ logger = logging.getLogger("Callback")
 async def callback_handler(request: ChatbotRequest) -> dict:
 
     # ===================== start =================================
+    
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4-0613",
         messages=[
             {"role": "system", "content": SYSTEM_MSG},
             {"role": "user", "content": request.userRequest.utterance},
